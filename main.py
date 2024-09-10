@@ -1,11 +1,12 @@
 from fastapi import FastAPI
+from router import router_api
+from database import SQLBase, engine
 
-from schemas import User
+app = FastAPI(
+    title='Register handle',
+    description='Handle for registration form with telegram alerts'
+)
 
-app = FastAPI()
+SQLBase.metadata.create_all(bind=engine)
+app.include_router(router_api)
 
-
-@app.post('/register')
-async def user_register(user_json: User):
-    if user_json:
-        return f'{user_json}'
