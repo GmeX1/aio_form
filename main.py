@@ -9,4 +9,3 @@ app = FastAPI(
 
 SQLBase.metadata.create_all(bind=engine)
 app.include_router(router_api)
-
